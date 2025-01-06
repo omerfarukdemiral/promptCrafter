@@ -1,0 +1,76 @@
+{
+    "MobileDevelopment": {
+        "description": "Technologies and concepts required for building mobile applications.",
+        "phases": {
+            "Frontend": {
+                "description": "Technologies for building mobile user interfaces.",
+                "technologies": {
+                    "Frameworks": {
+                        "React Native": {
+                            "icon": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+                            "description": "A framework for building cross-platform mobile applications using JavaScript."
+                        },
+                        "Flutter": {
+                            "icon": "https://upload.wikimedia.org/wikipedia/commons/1/17/Google-flutter-logo.png",
+                            "description": "Google's UI toolkit for building natively compiled applications for mobile, web, and desktop."
+                        },
+                        "SwiftUI": {
+                            "icon": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Swift_logo.svg",
+                            "description": "Apple's framework for building user interfaces across all Apple platforms."
+                        }
+                    },
+                    "UIKits": [
+                        "Material Design",
+                        "Native Base",
+                        "Cupertino"
+                    ]
+                }
+            },
+            "Backend": {
+                "description": "Backend technologies for mobile applications.",
+                "technologies": {
+                    "Firebase": {
+                        "icon": "https://upload.wikimedia.org/wikipedia/commons/3/37/Firebase_Logo.svg",
+                        "description": "A platform developed by Google for creating mobile and web applications."
+                    },
+                    "Node.js": {
+                        "icon": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg",
+                        "description": "A JavaScript runtime for server-side programming."
+                    },
+                    "Django": {
+                        "icon": "https://upload.wikimedia.org/wikipedia/commons/7/75/Django_logo.svg",
+                        "description": "A Python framework for backend development."
+                    }
+                }
+            },
+            "Database": {
+                "description": "Databases commonly used in mobile applications.",
+                "technologies": {
+                    "Relational": [
+                        "SQLite"
+                    ],
+                    "NoSQL": [
+                        "Firebase Realtime Database",
+                        "Realm"
+                    ],
+                    "InMemory": [
+                        "Redis"
+                    ]
+                }
+            },
+            "Other": {
+                "description": "Other tools and services for mobile development.",
+                "technologies": {
+                    "PushNotifications": [
+                        "Firebase Cloud Messaging",
+                        "OneSignal"
+                    ],
+                    "Analytics": [
+                        "Google Analytics",
+                        "Firebase Analytics"
+                    ]
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,83 @@
+{
+    "WebDevelopment": {
+        "description": "Technologies and concepts required for building web applications.",
+        "phases": {
+            "Frontend": {
+                "description": "Technologies for building user interfaces.",
+                "technologies": {
+                    "Frameworks": {
+                        "React": {
+                            "icon": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+                            "description": "A component-based library for building user interfaces."
+                        },
+                        "Vue.js": {
+                            "icon": "https://upload.wikimedia.org/wikipedia/commons/9/95/Vue.js_Logo_2.svg",
+                            "description": "A progressive JavaScript framework for building user interfaces."
+                        },
+                        "Angular": {
+                            "icon": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Angular_full_color_logo.svg",
+                            "description": "A platform for building mobile and desktop web applications."
+                        }
+                    },
+                    "CSSFrameworks": [
+                        "Tailwind",
+                        "Bootstrap",
+                        "Bulma"
+                    ],
+                    "StateManagement": [
+                        "Redux",
+                        "MobX",
+                        "Context API",
+                        "Recoil"
+                    ],
+                    "Routing": {
+                        "React Router": {
+                            "icon": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+                            "description": "Routing library for React applications."
+                        },
+                        "Next.js": {
+                            "icon": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+                            "description": "React framework with built-in routing capabilities."
+                        }
+                    }
+                }
+            },
+            "Backend": {
+                "description": "Technologies for server-side development.",
+                "technologies": {
+                    "Node.js": {
+                        "icon": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg",
+                        "description": "A JavaScript runtime for building scalable backend services."
+                    },
+                    "Django": {
+                        "icon": "https://upload.wikimedia.org/wikipedia/commons/7/75/Django_logo.svg",
+                        "description": "A Python framework for rapid backend development."
+                    },
+                    "Spring Boot": {
+                        "icon": "https://upload.wikimedia.org/wikipedia/commons/4/44/Spring_Framework_Logo_2018.svg",
+                        "description": "A Java-based framework for building robust backend systems."
+                    }
+                }
+            },
+            "Database": {
+                "description": "Technologies for data storage and management.",
+                "technologies": {
+                    "Relational": [
+                        "PostgreSQL",
+                        "MySQL",
+                        "SQLite"
+                    ],
+                    "NoSQL": [
+                        "MongoDB",
+                        "Firebase Realtime Database",
+                        "CouchDB"
+                    ],
+                    "InMemory": [
+                        "Redis",
+                        "Memcached"
+                    ]
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,289 @@
+{
+    "modules": {
+        "Frontend": {
+            "description": "Technologies used for building user interfaces.",
+            "technologies": {
+                "React": {
+                    "CSSFrameworks": [
+                        "Tailwind",
+                        "Bootstrap",
+                        "Bulma"
+                    ],
+                    "StateManagement": [
+                        "Redux",
+                        "Context API",
+                        "MobX",
+                        "Recoil"
+                    ],
+                    "UIKits": [
+                        "Material UI",
+                        "Ant Design",
+                        "Chakra UI"
+                    ],
+                    "Other": [
+                        "Next.js",
+                        "Gatsby",
+                        "React Router"
+                    ],
+                    "icon": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+                    "description": "A component-based library for building user interfaces."
+                },
+                "Vue.js": {
+                    "CSSFrameworks": [
+                        "Vuetify",
+                        "Tailwind",
+                        "Bootstrap"
+                    ],
+                    "StateManagement": [
+                        "Vuex",
+                        "Pinia"
+                    ],
+                    "UIKits": [
+                        "Vuetify",
+                        "Element Plus"
+                    ],
+                    "Other": [
+                        "Nuxt.js"
+                    ],
+                    "icon": "https://upload.wikimedia.org/wikipedia/commons/9/95/Vue.js_Logo_2.svg",
+                    "description": "A lightweight and flexible framework for user interface development."
+                },
+                "Angular": {
+                    "CSSFrameworks": [
+                        "Angular Material",
+                        "Bootstrap"
+                    ],
+                    "StateManagement": [
+                        "RxJS"
+                    ],
+                    "UIKits": [
+                        "Angular Material"
+                    ],
+                    "Other": [
+                        "NgRx",
+                        "Ionic"
+                    ],
+                    "icon": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Angular_full_color_logo.svg",
+                    "description": "A powerful UI development platform supported by Google."
+                }
+            }
+        },
+        "Backend": {
+            "description": "Technologies that manage server-side logic.",
+            "technologies": {
+                "Node.js": {
+                    "Frameworks": [
+                        "Express.js",
+                        "NestJS",
+                        "Fastify"
+                    ],
+                    "APITypes": [
+                        "REST",
+                        "GraphQL",
+                        "gRPC"
+                    ],
+                    "icon": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg",
+                    "description": "A JavaScript-based, fast, and scalable backend development platform."
+                },
+                "Python": {
+                    "Frameworks": [
+                        "Django",
+                        "Flask",
+                        "FastAPI"
+                    ],
+                    "APITypes": [
+                        "REST",
+                        "GraphQL"
+                    ],
+                    "icon": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
+                    "description": "A popular programming language with high readability and extensive library support."
+                },
+                "Java": {
+                    "Frameworks": [
+                        "Spring Boot",
+                        "Quarkus"
+                    ],
+                    "APITypes": [
+                        "REST",
+                        "GraphQL"
+                    ],
+                    "icon": "https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg",
+                    "description": "A robust backend development language for comprehensive business solutions."
+                }
+            }
+        },
+        "Database": {
+            "description": "Technologies used for data storage and management.",
+            "technologies": {
+                "SQL": {
+                    "Types": [
+                        "PostgreSQL",
+                        "MySQL",
+                        "SQLite"
+                    ],
+                    "icon": "https://upload.wikimedia.org/wikipedia/commons/8/87/Sql_data_base_with_logo.png",
+                    "description": "A standard for structured data management."
+                },
+                "NoSQL": {
+                    "Types": [
+                        "MongoDB",
+                        "Firebase Realtime Database",
+                        "CouchDB"
+                    ],
+                    "icon": "https://upload.wikimedia.org/wikipedia/commons/4/45/MongoDB-Logo.svg",
+                    "description": "Technologies for fast and flexible unstructured data management."
+                },
+                "InMemory": {
+                    "Types": [
+                        "Redis",
+                        "Memcached"
+                    ],
+                    "icon": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Redis_Logo.svg",
+                    "description": "In-memory data storage technologies that provide fast access."
+                }
+            }
+        },
+        "Routing": {
+            "description": "Technologies and tools for managing application routing.",
+            "technologies": {
+                "React Router": {
+                    "icon": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+                    "description": "Routing library for React applications."
+                },
+                "Next.js": {
+                    "icon": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+                    "description": "React framework with built-in routing capabilities."
+                },
+                "Angular Router": {
+                    "icon": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Angular_full_color_logo.svg",
+                    "description": "Router library integrated into Angular."
+                }
+            }
+        },
+        "DesignPatterns": {
+            "description": "Best practices and solutions for common design challenges.",
+            "technologies": {
+                "Singleton": {
+                    "icon": "/default-icon.svg",
+                    "description": "Ensures a class has only one instance."
+                },
+                "Factory": {
+                    "icon": "/default-icon.svg",
+                    "description": "Creates objects without specifying the exact class."
+                },
+                "Observer": {
+                    "icon": "/default-icon.svg",
+                    "description": "Defines a dependency between objects to automatically notify changes."
+                }
+            }
+        },
+        "Caching": {
+            "description": "Technologies for improving application performance by storing frequently used data.",
+            "technologies": {
+                "Redis": {
+                    "icon": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Redis_Logo.svg",
+                    "description": "An in-memory data structure store."
+                },
+                "Memcached": {
+                    "icon": "/default-icon.svg",
+                    "description": "A distributed memory caching system."
+                }
+            }
+        },
+        "Mobile": {
+            "description": "Technologies and tools for mobile application development.",
+            "technologies": {
+                "Frameworks": {
+                    "React Native": {
+                        "icon": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+                        "description": "A popular framework for building cross-platform mobile applications using JavaScript."
+                    },
+                    "Flutter": {
+                        "icon": "https://upload.wikimedia.org/wikipedia/commons/1/17/Google-flutter-logo.png",
+                        "description": "Google's UI toolkit for building natively compiled applications for mobile, web, and desktop."
+                    },
+                    "SwiftUI": {
+                        "icon": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Swift_logo.svg",
+                        "description": "Apple's modern framework for building user interfaces across all Apple platforms."
+                    },
+                    "Kotlin Multiplatform": {
+                        "icon": "https://upload.wikimedia.org/wikipedia/commons/7/74/Kotlin-logo.svg",
+                        "description": "A framework for building cross-platform applications using Kotlin."
+                    }
+                },
+                "StateManagement": {
+                    "Redux": {
+                        "icon": "https://upload.wikimedia.org/wikipedia/commons/4/49/Redux.png",
+                        "description": "Provides predictable state management for mobile applications."
+                    },
+                    "MobX": {
+                        "icon": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Mobx.png",
+                        "description": "A simple and scalable state management solution."
+                    },
+                    "Context API": {
+                        "icon": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+                        "description": "Built-in state management feature for React and React Native."
+                    }
+                },
+                "UIKits": {
+                    "Material Design": {
+                        "icon": "https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Material_Design_Logo.svg",
+                        "description": "A design system by Google for creating visually appealing and consistent UIs."
+                    },
+                    "Native Base": {
+                        "icon": "/default-icon.svg",
+                        "description": "A UI library for React Native applications."
+                    },
+                    "Cupertino": {
+                        "icon": "/default-icon.svg",
+                        "description": "A UI toolkit that mimics the iOS look and feel."
+                    }
+                },
+                "Testing": {
+                    "Jest": {
+                        "icon": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Jest_logo.svg",
+                        "description": "A testing framework for JavaScript and React Native projects."
+                    },
+                    "Detox": {
+                        "icon": "/default-icon.svg",
+                        "description": "A mobile testing framework for end-to-end testing of React Native apps."
+                    },
+                    "Appium": {
+                        "icon": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Appium.png",
+                        "description": "An open-source tool for automated testing of native, hybrid, and mobile web apps."
+                    }
+                },
+                "Navigation": {
+                    "React Navigation": {
+                        "icon": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+                        "description": "A library for navigation in React Native applications."
+                    },
+                    "Flutter Navigator": {
+                        "icon": "https://upload.wikimedia.org/wikipedia/commons/1/17/Google-flutter-logo.png",
+                        "description": "Flutter's built-in navigation system."
+                    }
+                },
+                "DevOps": {
+                    "Fastlane": {
+                        "icon": "/default-icon.svg",
+                        "description": "A tool for automating deployment processes for mobile apps."
+                    },
+                    "AppCenter": {
+                        "icon": "/default-icon.svg",
+                        "description": "A cloud service for building, testing, and monitoring mobile applications."
+                    }
+                },
+                "Other": {
+                    "Push Notifications": {
+                        "icon": "/default-icon.svg",
+                        "description": "Technologies like Firebase Cloud Messaging and OneSignal for sending notifications to mobile apps."
+                    },
+                    "Analytics": {
+                        "icon": "/default-icon.svg",
+                        "description": "Tools like Google Analytics and Firebase Analytics for tracking app usage and performance."
+                    }
+                }
+            }
+        }
+    }
+}
