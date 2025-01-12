@@ -1,15 +1,11 @@
-import { Router, Request, Response } from 'express';
-import promptController from '../controllers/PromptController';
+import express from 'express';
+import PromptController from '../controllers/PromptController';
 
-const router = Router();
+const router = express.Router();
+const promptController = new PromptController();
 
-// Validation middleware'i ayrı olarak tanımlayalım
-const validatePrompt = [
-  ...promptController.constructor.prototype.validate.create,
-];
-
-router.post('/', validatePrompt, (req: Request, res: Response) => promptController.create(req, res));
-router.get('/', (req: Request, res: Response) => promptController.getAll(req, res));
-router.get('/:id', (req: Request, res: Response) => promptController.getById(req, res));
+router.post('/', promptController.create.bind(promptController));
+router.get('/', promptController.getAll.bind(promptController));
+router.get('/:id', promptController.getById.bind(promptController));
 
 export default router; 

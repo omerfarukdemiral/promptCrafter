@@ -1,98 +1,122 @@
 'use client';
 
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '@/store';
-import { getPrompts } from '@/store/promptSlice';
+import { useState, useEffect } from 'react';
 import { Terminal, Code2, Smartphone } from 'lucide-react';
-import { Prompt } from '@/types/prompt';
+import Image from 'next/image';
+import Link from 'next/link';
+import { projectService } from '@/services/api';
+import { toast } from 'react-hot-toast';
+import Header from '@/components/Header';
+
+interface Technology {
+  _id: string;
+  name: string;
+  icon: string;
+  category: string;
+}
+
+interface Project {
+  _id: string;
+  projectName: string;
+  description: string;
+  platform: 'web' | 'mobile';
+  technologies: Technology[];
+  createdAt: string;
+}
 
 export default function PromptsPage() {
-  const dispatch = useDispatch<AppDispatch>();
-  const { prompts, loading, error } = useSelector((state: RootState) => state.prompt);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    dispatch(getPrompts());
-  }, [dispatch]);
+    fetchProjects();
+  }, []);
 
-  if (loading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <div className="text-center">
-          <Terminal className="mx-auto mb-4 h-12 w-12 animate-spin text-green-500" />
-          <p className="font-mono text-white">Yükleniyor...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <div className="text-center">
-          <p className="font-mono text-red-500">{error}</p>
-        </div>
-      </div>
-    );
-  }
+  const fetchProjects = async () => {
+    try {
+      setLoading(true);
+      const response = await projectService.getAll();
+      if (response.data && Array.isArray(response.data.data)) {
+        setProjects(response.data.data);
+      } else {
+        console.error('Beklenmeyen API yanıt formatı:', response.data);
+        toast.error('Projeler yüklenirken bir hata oluştu');
+      }
+    } catch (error) {
+      console.error('Projeler yüklenirken hata:', error);
+      toast.error('Projeler yüklenirken bir hata oluştu');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-900 to-black p-8">
-      <div className="container mx-auto max-w-6xl">
-        <h1 className="mb-8 font-mono text-3xl font-bold text-white">
-          Oluşturulan Promptlar
-        </h1>
+    <main className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-black">
+      <Header />
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {loading ? (
+            <div className="flex justify-center items-center h-64">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500" />
+            </div>
+          ) : projects.length === 0 ? (
+            <div className="col-span-3 flex justify-center items-center h-64">
+              <p className="text-white text-xl">Henüz hiç proje oluşturulmamış</p>
+            </div>
+          ) : (
+            projects.map((project) => (
+              <Link
+                key={project._id}
+                href={`/result?id=${project._id}`}
+                className="block group"
+              >
+                <div className="bg-white/5 backdrop-blur-lg rounded-xl border border-purple-500/20 p-6 transition-all duration-300 group-hover:border-purple-500/40 group-hover:transform group-hover:scale-[1.02]">
+                  <div className="flex items-center justify-between mb-4">
+                    <h2 className="text-xl font-semibold text-white">
+                      {project.projectName}
+                    </h2>
+                    {project.platform === 'web' ? (
+                      <Code2 className="h-5 w-5 text-blue-400" />
+                    ) : (
+                      <Smartphone className="h-5 w-5 text-green-400" />
+                    )}
+                  </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {prompts.map((prompt: Prompt) => (
-            <div
-              key={prompt._id}
-              className="rounded-lg bg-gray-800 p-6 shadow-xl transition-transform hover:scale-105"
-            >
-              <div className="mb-4 flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                  {prompt.platform === 'web' ? (
-                    <Code2 className="h-6 w-6 text-green-500" />
-                  ) : (
-                    <Smartphone className="h-6 w-6 text-green-500" />
-                  )}
-                  <span className="font-mono text-lg font-semibold text-white">
-                    {prompt.platform === 'web' ? 'Web Projesi' : 'Mobil Proje'}
-                  </span>
-                </div>
-                <span className="text-sm text-gray-400">
-                  {new Date(prompt.createdAt).toLocaleDateString('tr-TR')}
-                </span>
-              </div>
+                  <p className="text-gray-400 text-sm mb-6 line-clamp-2">
+                    {project.description}
+                  </p>
 
-              <div className="mb-4">
-                <h3 className="mb-2 font-mono text-sm font-medium text-gray-400">
-                  Seçilen Teknolojiler
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {Object.entries(prompt.technologies).map(([category, techs]) => (
-                    <div key={category}>
-                      {techs.map((tech: string) => (
-                        <span
-                          key={tech}
-                          className="mr-2 mb-2 inline-block rounded-full bg-green-600/20 px-3 py-1 text-sm font-mono text-green-500"
+                  <div className="space-y-2">
+                    <h3 className="text-sm font-medium text-gray-500">Teknolojiler</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech) => (
+                        <div
+                          key={tech._id}
+                          className="flex items-center space-x-1 bg-white/5 px-2 py-1 rounded-full"
                         >
-                          {tech}
-                        </span>
+                          <div className="relative w-4 h-4">
+                            <Image
+                              src={tech.icon}
+                              alt={tech.name}
+                              fill
+                              className="object-contain"
+                            />
+                          </div>
+                          <span className="text-xs text-gray-300">{tech.name}</span>
+                        </div>
                       ))}
                     </div>
-                  ))}
-                </div>
-              </div>
+                  </div>
 
-              <div>
-                <h3 className="mb-2 font-mono text-sm font-medium text-gray-400">
-                  Proje Detayları
-                </h3>
-                <p className="font-mono text-sm text-white">{prompt.projectDetails}</p>
-              </div>
-            </div>
-          ))}
+                  <div className="mt-4 pt-4 border-t border-white/10">
+                    <span className="text-xs text-gray-500">
+                      {new Date(project.createdAt).toLocaleDateString('tr-TR')}
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            ))
+          )}
         </div>
       </div>
     </main>

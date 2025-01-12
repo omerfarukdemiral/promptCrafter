@@ -1,4 +1,4 @@
-// File: /Users/omerfaruk/Desktop/Dev/PromptCrafter/frontend/app/create/page.tsx
+// File: /Users/omerfaruk/Desktop/Dev/promptCrafter/frontend/app/create/page.tsx
 import * as entry from '../../../../app/create/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

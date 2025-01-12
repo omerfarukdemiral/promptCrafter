@@ -4,6 +4,7 @@ import './globals.css';
 import { Providers } from './providers';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import defaultMetadata from './metadata';
+import { Toaster } from 'react-hot-toast';
 
 const firaCode = Fira_Code({
   subsets: ['latin'],
@@ -11,7 +12,10 @@ const firaCode = Fira_Code({
   variable: '--font-fira-code',
 });
 
-export const metadata: Metadata = defaultMetadata;
+export const metadata = {
+  title: 'PromptCrafter - AI Prompt Assistant',
+  description: 'Web ve mobil geliştirme süreçlerinizi hızlandıran akıllı prompt asistanı.',
+};
 
 export default function RootLayout({
   children,
@@ -21,6 +25,7 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <body className={`${firaCode.variable} antialiased`}>
+        <Toaster position="top-right" />
         <ErrorBoundary>
           <Providers>{children}</Providers>
         </ErrorBoundary>

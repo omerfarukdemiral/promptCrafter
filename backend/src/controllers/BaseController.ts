@@ -17,4 +17,25 @@ export default abstract class BaseController {
       return res.status(500).json({ message: 'Internal server error' });
     }
   }
+
+  protected success(res: Response, data: any = null, status: number = 200) {
+    return res.status(status).json({
+      success: true,
+      data
+    });
+  }
+
+  protected error(res: Response, error: any, status: number = 500) {
+    return res.status(status).json({
+      success: false,
+      error: error.message || 'Bir hata oluştu'
+    });
+  }
+
+  protected notFound(res: Response, message: string = 'Kayıt bulunamadı') {
+    return res.status(404).json({
+      success: false,
+      error: message
+    });
+  }
 } 

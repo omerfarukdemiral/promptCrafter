@@ -1,33 +1,28 @@
 import axios from 'axios';
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5678/api';
+
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api',
+  baseURL: API_URL,
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json'
+  },
+  withCredentials: true
 });
 
-export interface CreatePromptData {
-  platform: 'web' | 'mobile';
-  technologies: Record<string, string[]>;
-  projectDetails: string;
-}
-
-export interface Prompt extends CreatePromptData {
-  _id: string;
-  createdAt: string;
-}
-
-export const promptApi = {
-  create: async (data: CreatePromptData) => {
-    const response = await api.post<Prompt>('/prompts', data);
-    return response.data;
-  },
-
-  getAll: async () => {
-    const response = await api.get<Prompt[]>('/prompts');
-    return response.data;
-  },
-
+export const projectService = {
+  create: (data: any) => api.post('/projects', data),
+  getAll: () => api.get('/projects'),
   getById: async (id: string) => {
-    const response = await api.get<Prompt>(`/prompts/${id}`);
-    return response.data;
+    const response = await fetch(`${API_URL}/projects/${id}`);
+    if (!response.ok) {
+      throw new Error('Proje getirilemedi');
+    }
+    return response.json();
   },
-}; 
+  update: (id: string, data: any) => api.put(`/projects/${id}`, data),
+  delete: (id: string) => api.delete(`/projects/${id}`)
+};
+
+export default api; 

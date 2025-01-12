@@ -38,4 +38,4 @@ class PromptController extends BaseController {
   };
 }
 
-export default new PromptController(); 
+export default PromptController; 
