@@ -125,68 +125,71 @@ export default function CreatePrompt() {
         throw new Error('Lütfen tüm gerekli alanları doldurun');
       }
 
-      if (!platform) {
-        throw new Error('Lütfen bir platform seçin');
-      }
-
-      if (selections.length === 0) {
-        throw new Error('Lütfen en az bir teknoloji seçin');
-      }
-
       const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5678/api';
 
-      try {
-        const response = await fetch(`${API_URL}/projects`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          credentials: 'include',
-          body: JSON.stringify({
-            email,
-            projectName,
-            description,
-            modules,
-            platform,
-            technologies: selections.map(selection => ({
-              stepId: selection.stepId,
-              name: selection.optionName
-            }))
-          }),
-        });
+      // Teknolojileri doğru formatta hazırla
+      const technologiesMap = selections.reduce((acc: { [key: string]: string }, curr) => {
+        acc[curr.stepId.toString()] = curr.optionName;
+        return acc;
+      }, {});
 
-        const data = await response.json();
+      // Önce proje oluştur
+      const projectResponse = await fetch(`${API_URL}/projects`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          projectName,
+          description,
+          modules,
+          platform,
+          technologies: selections.map(selection => ({
+            stepId: selection.stepId,
+            name: selection.optionName
+          }))
+        }),
+      });
 
-        if (!response.ok) {
-          throw new Error(data.error || 'API isteği başarısız oldu');
-        }
+      const projectData = await projectResponse.json();
 
-        console.info('Proje başarıyla oluşturuldu:', data);
-        toast.success('Proje başarıyla oluşturuldu!');
-        router.push(`/result?id=${data._id}`);
-      } catch (error: any) {
-        console.error('API Hatası:', {
-          message: error.message,
-          stack: error.stack,
-          status: error.status
-        });
-        
-        let errorMessage = 'Beklenmeyen bir hata oluştu';
-        
-        if (error instanceof TypeError && error.message === 'Failed to fetch') {
-          errorMessage = 'Sunucuya bağlanılamıyor. Lütfen internet bağlantınızı kontrol edin.';
-        } else if (error.message.includes('API isteği başarısız oldu')) {
-          errorMessage = error.message;
-        }
-
-        setError(errorMessage);
-      } finally {
-        setIsSubmitting(false);
+      if (!projectResponse.ok) {
+        throw new Error(projectData.error || 'Proje oluşturulurken bir hata oluştu');
       }
+
+      console.log('✅ Proje başarıyla oluşturuldu:', projectData);
+
+      // Prompt oluştur
+      const promptResponse = await fetch(`${API_URL}/prompts`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          projectId: projectData._id,
+          platform,
+          technologies: technologiesMap, // Hazırladığımız map'i kullan
+          projectDetails: description
+        }),
+      });
+
+      const promptData = await promptResponse.json();
+
+      if (!promptResponse.ok) {
+        throw new Error(promptData.error || 'Prompt oluşturulurken bir hata oluştu');
+      }
+
+      console.log('✅ Prompt başarıyla oluşturuldu:', promptData);
+      toast.success('Proje başarıyla oluşturuldu!');
+      router.push(`/result?id=${projectData._id}`);
+
     } catch (error: any) {
-      console.error('Hata:', error);
+      console.error('❌ Hata:', error);
+      toast.error(error.message || 'Beklenmeyen bir hata oluştu');
       setError(error.message || 'Beklenmeyen bir hata oluştu');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 

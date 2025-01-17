@@ -1,9 +1,11 @@
 import { Schema, model, Document } from 'mongoose';
 
-interface IPrompt extends Document {
+export interface IPrompt extends Document {
   platform: 'web' | 'mobile';
   technologies: Record<string, string[]>;
   projectDetails: string;
+  instructions: string;
+  projectId: Schema.Types.ObjectId;
   createdAt: Date;
 }
 
@@ -22,6 +24,15 @@ const promptSchema = new Schema<IPrompt>(
       type: String,
       required: true,
     },
+    instructions: {
+      type: String,
+      required: true,
+    },
+    projectId: {
+      type: Schema.Types.ObjectId,
+      ref: 'Project',
+      required: true,
+    }
   },
   { timestamps: true }
 );

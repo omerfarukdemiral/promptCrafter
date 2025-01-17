@@ -1,38 +1,31 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { promptApi, Prompt, CreatePromptData } from '../services/api';
+import { promptApi } from '../services/api';
 
 interface PromptState {
-  prompts: Prompt[];
-  currentPrompt: Prompt | null;
+  instructions: string | null;
   loading: boolean;
   error: string | null;
 }
 
 const initialState: PromptState = {
-  prompts: [],
-  currentPrompt: null,
+  instructions: null,
   loading: false,
-  error: null,
+  error: null
 };
 
-export const createPrompt = createAsyncThunk(
-  'prompt/create',
-  async (data: CreatePromptData) => {
+export const generatePrompt = createAsyncThunk(
+  'prompt/generate',
+  async (data: any) => {
     const response = await promptApi.create(data);
-    return response;
+    return response.data;
   }
 );
 
-export const getPrompts = createAsyncThunk('prompt/getAll', async () => {
-  const response = await promptApi.getAll();
-  return response;
-});
-
-export const getPromptById = createAsyncThunk(
-  'prompt/getById',
-  async (id: string) => {
-    const response = await promptApi.getById(id);
-    return response;
+export const getPromptByProjectId = createAsyncThunk(
+  'prompt/getByProjectId',
+  async (projectId: string) => {
+    const response = await promptApi.getByProjectId(projectId);
+    return response.data;
   }
 );
 
@@ -40,57 +33,41 @@ const promptSlice = createSlice({
   name: 'prompt',
   initialState,
   reducers: {
-    clearError: (state) => {
+    clearPrompt: (state) => {
+      state.instructions = null;
       state.error = null;
-    },
-    clearCurrentPrompt: (state) => {
-      state.currentPrompt = null;
-    },
+    }
   },
   extraReducers: (builder) => {
     builder
-      // Create Prompt
-      .addCase(createPrompt.pending, (state) => {
+      // Generate prompt
+      .addCase(generatePrompt.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(createPrompt.fulfilled, (state, action) => {
+      .addCase(generatePrompt.fulfilled, (state, action) => {
         state.loading = false;
-        state.currentPrompt = action.payload;
-        state.prompts.push(action.payload);
+        state.instructions = action.payload.instructions;
       })
-      .addCase(createPrompt.rejected, (state, action) => {
+      .addCase(generatePrompt.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message || 'Bir hata oluştu';
       })
-      // Get All Prompts
-      .addCase(getPrompts.pending, (state) => {
+      // Get prompt
+      .addCase(getPromptByProjectId.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(getPrompts.fulfilled, (state, action) => {
+      .addCase(getPromptByProjectId.fulfilled, (state, action) => {
         state.loading = false;
-        state.prompts = action.payload;
+        state.instructions = action.payload.instructions;
       })
-      .addCase(getPrompts.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message || 'Bir hata oluştu';
-      })
-      // Get Prompt by ID
-      .addCase(getPromptById.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(getPromptById.fulfilled, (state, action) => {
-        state.loading = false;
-        state.currentPrompt = action.payload;
-      })
-      .addCase(getPromptById.rejected, (state, action) => {
+      .addCase(getPromptByProjectId.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message || 'Bir hata oluştu';
       });
-  },
+  }
 });
 
-export const { clearError, clearCurrentPrompt } = promptSlice.actions;
+export const { clearPrompt } = promptSlice.actions;
 export default promptSlice.reducer; 

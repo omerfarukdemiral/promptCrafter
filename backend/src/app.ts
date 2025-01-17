@@ -9,6 +9,7 @@ import logger from './utils/logger';
 import { initializeData } from './utils/initData';
 import { errorHandler } from './middleware/errorHandler';
 import { apiLimiter } from './middleware/rateLimiter';
+import promptRoutes from './routes/prompt.routes';
 
 // Load env vars
 dotenv.config();
@@ -42,6 +43,7 @@ app.use(apiLimiter);
 
 // Routes
 app.use('/api', routes);
+app.use('/api/prompts', promptRoutes);
 
 // Health check endpoint
 app.get('/health', (req, res) => {
