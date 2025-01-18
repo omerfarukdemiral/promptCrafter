@@ -78,7 +78,7 @@ Lütfen bu şablonu kullanarak, verilen proje detaylarına göre kapsamlı bir d
             console.log('🤖 GPT-4 API çağrısı yapılıyor...');
 
             const response = await this.openai.chat.completions.create({
-                model: "gpt-4",
+                model: 'gpt-3.5-turbo',
                 messages: [
                     {
                         role: "system",

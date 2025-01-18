@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import Project from '../models/Project';
 import ProjectTechnology from '../models/ProjectTechnology';
-import Technology from '../models/Technology';
+import Technology, { ITechnology } from '../models/Technology';
 import BaseController from './BaseController';
 import logger from '../utils/logger';
 
@@ -163,9 +163,12 @@ class ProjectController extends BaseController {
         });
       }
 
-      // Projenin teknolojilerini getir
+      // Projenin teknolojilerini getir ve populate et
       const projectTechnologies = await ProjectTechnology.find({ projectId: id })
-        .populate('technologyId')
+        .populate<{ technologyId: ITechnology }>({
+          path: 'technologyId',
+          select: 'name icon category description'
+        })
         .sort({ stepId: 1 });
 
       // Teknoloji verilerini düzenle
@@ -174,6 +177,7 @@ class ProjectController extends BaseController {
         name: pt.technologyId.name,
         icon: pt.technologyId.icon,
         category: pt.technologyId.category,
+        description: pt.technologyId.description,
         stepId: pt.stepId
       }));
 
@@ -191,9 +195,10 @@ class ProjectController extends BaseController {
           description: project.description,
           email: project.email,
           platform: project.platform,
-          modules: project.modules,
+          modules: project.modules || [],
           technologies,
-          createdAt: project.createdAt
+          createdAt: project.createdAt,
+          updatedAt: project.updatedAt
         }
       });
 
