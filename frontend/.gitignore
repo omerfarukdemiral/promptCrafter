@@ -55,3 +55,4 @@ storybook-static/
 # Test artifacts
 cypress/videos/
 cypress/screenshots/
+.vercel

@@ -1467,3 +1467,37 @@
 {"level":"info","message":"Proje detayları başarıyla getirildi:","projectId":"678bb14787e47a6d699f8b30","technologiesCount":9,"timestamp":"2025-01-18T14:55:09.827Z"}
 {"level":"info","message":"Proje detayı isteği alındı:","projectId":"678bb14787e47a6d699f8b30","timestamp":"2025-01-18T14:55:09.830Z"}
 {"level":"info","message":"Proje detayları başarıyla getirildi:","projectId":"678bb14787e47a6d699f8b30","technologiesCount":9,"timestamp":"2025-01-18T14:55:10.325Z"}
+{"level":"info","message":"MongoDB bağlantısı başlatılıyor...","timestamp":"2025-01-18T15:09:44.390Z"}
+{"level":"info","message":"Server is running on port 5678","timestamp":"2025-01-18T15:09:44.403Z"}
+{"level":"info","message":"MongoDB bağlantısı başarıyla kuruldu!","timestamp":"2025-01-18T15:09:45.143Z"}
+{"level":"info","message":"Veritabanında zaten proje var, yeni başlangıç verileri yüklenmeyecek.","timestamp":"2025-01-18T15:09:45.388Z"}
+{"level":"info","message":"Proje detayı isteği alındı:","projectId":"678bb14787e47a6d699f8b30","timestamp":"2025-01-18T15:13:55.929Z"}
+{"level":"info","message":"Proje ID ile prompt getirme isteği:","projectId":"678bb14787e47a6d699f8b30","timestamp":"2025-01-18T15:13:55.932Z"}
+{"level":"info","message":"Proje promptu başarıyla getirildi:","projectId":"678bb14787e47a6d699f8b30","promptId":"678bb15687e47a6d699f8b9e","timestamp":"2025-01-18T15:13:55.996Z"}
+{"level":"info","message":"Proje ID ile prompt getirme isteği:","projectId":"678bb14787e47a6d699f8b30","timestamp":"2025-01-18T15:13:55.998Z"}
+{"level":"info","message":"Proje promptu başarıyla getirildi:","projectId":"678bb14787e47a6d699f8b30","promptId":"678bb15687e47a6d699f8b9e","timestamp":"2025-01-18T15:13:56.059Z"}
+{"level":"info","message":"Proje detayları başarıyla getirildi:","projectId":"678bb14787e47a6d699f8b30","technologiesCount":9,"timestamp":"2025-01-18T15:13:56.115Z"}
+{"level":"info","message":"Proje detayı isteği alındı:","projectId":"678bb14787e47a6d699f8b30","timestamp":"2025-01-18T15:13:56.118Z"}
+{"level":"info","message":"Proje detayları başarıyla getirildi:","projectId":"678bb14787e47a6d699f8b30","technologiesCount":9,"timestamp":"2025-01-18T15:13:56.302Z"}
+{"level":"info","message":"MongoDB bağlantısı başlatılıyor...","timestamp":"2025-01-18T15:24:29.727Z"}
+{"level":"info","message":"MongoDB bağlantısı kuruluyor...","timestamp":"2025-01-18T15:25:02.533Z"}
+{"level":"info","message":"MongoDB bağlantısı başarılı","timestamp":"2025-01-18T15:25:03.211Z"}
+{"level":"info","message":"Proje temizleme işlemi başlatılıyor...","timestamp":"2025-01-18T15:25:03.212Z"}
+{"level":"info","message":"15 adet proje silinecek.","timestamp":"2025-01-18T15:25:03.372Z"}
+{"level":"info","message":"Proje ID: 6783aac1612c5665a9d0e1c3 için teknoloji ilişkileri silindi.","timestamp":"2025-01-18T15:25:03.434Z"}
+{"level":"info","message":"Proje ID: 6783abb9612c5665a9d0e21b için teknoloji ilişkileri silindi.","timestamp":"2025-01-18T15:25:03.498Z"}
+{"level":"info","message":"Proje ID: 6783c369612c5665a9d0e349 için teknoloji ilişkileri silindi.","timestamp":"2025-01-18T15:25:03.560Z"}
+{"level":"info","message":"Proje ID: 6783d59a7cc09bd334bc46f7 için teknoloji ilişkileri silindi.","timestamp":"2025-01-18T15:25:03.625Z"}
+{"level":"info","message":"Proje ID: 6783d5e97cc09bd334bc4731 için teknoloji ilişkileri silindi.","timestamp":"2025-01-18T15:25:03.690Z"}
+{"level":"info","message":"Proje ID: 678a6ad71eed180a208c2c79 için teknoloji ilişkileri silindi.","timestamp":"2025-01-18T15:25:03.752Z"}
+{"level":"info","message":"Proje ID: 678a79986714060ff9a02339 için teknoloji ilişkileri silindi.","timestamp":"2025-01-18T15:25:03.813Z"}
+{"level":"info","message":"Proje ID: 678a81e6b2ed66a8d5e7dada için teknoloji ilişkileri silindi.","timestamp":"2025-01-18T15:25:03.871Z"}
+{"level":"info","message":"Proje ID: 678a85da08bcb183f32a950e için teknoloji ilişkileri silindi.","timestamp":"2025-01-18T15:25:03.929Z"}
+{"level":"info","message":"Proje ID: 678a8718ca6b5ee218426a5b için teknoloji ilişkileri silindi.","timestamp":"2025-01-18T15:25:03.990Z"}
+{"level":"info","message":"Proje ID: 678a8758ca6b5ee218426aad için teknoloji ilişkileri silindi.","timestamp":"2025-01-18T15:25:04.050Z"}
+{"level":"info","message":"Proje ID: 678a87fbca6b5ee218426acd için teknoloji ilişkileri silindi.","timestamp":"2025-01-18T15:25:04.107Z"}
+{"level":"info","message":"Proje ID: 678a8a74a6226af74f064650 için teknoloji ilişkileri silindi.","timestamp":"2025-01-18T15:25:04.169Z"}
+{"level":"info","message":"Proje ID: 678a8d94a6226af74f0646be için teknoloji ilişkileri silindi.","timestamp":"2025-01-18T15:25:04.228Z"}
+{"level":"info","message":"Proje ID: 678bb14787e47a6d699f8b30 için teknoloji ilişkileri silindi.","timestamp":"2025-01-18T15:25:04.292Z"}
+{"deletedProjects":15,"level":"info","message":"Temizleme işlemi tamamlandı:","protectedProjects":2,"timestamp":"2025-01-18T15:25:04.354Z"}
+{"level":"info","message":"MongoDB bağlantısı başlatılıyor...","timestamp":"2025-01-18T15:25:29.601Z"}
