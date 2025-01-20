@@ -40,17 +40,8 @@ const allowedOrigins = [
 ];
 
 app.use(cors({
-  origin: (origin, callback) => {
-    // origin undefined olabilir (örn: Postman istekleri)
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('CORS policy violation'));
-    }
-  },
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  origin: '*', // Geliştirme aşamasında tüm originlere izin ver
+  credentials: true
 }));
 
 // Middleware
@@ -70,6 +61,16 @@ app.get('/health', (req, res) => {
     status: 'ok',
     mongodb: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected'
   });
+});
+
+// Health check
+app.get('/api/health', (_, res) => {
+  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
+// Test route
+app.get('/', (_, res) => {
+  res.json({ message: 'Backend is running!' });
 });
 
 // Global hata yakalama
