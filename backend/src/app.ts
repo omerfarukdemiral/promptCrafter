@@ -30,9 +30,22 @@ connectDB()
     process.exit(1);
   });
 
-// CORS yapılandırması
+// CORS ayarları
+const allowedOrigins = [
+  'https://prompt-crafter.vercel.app',
+  'https://promptcrafter.vercel.app',
+  'http://localhost:3000'  // Geliştirme ortamı için
+];
+
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
+  origin: (origin, callback) => {
+    // origin undefined olabilir (örn: Postman istekleri)
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS policy violation'));
+    }
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
