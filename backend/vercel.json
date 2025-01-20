@@ -1,11 +1,16 @@
 {
   "name": "promptcrafter-backend",
-  "framework": "node",
-  "rootDirectory": "backend",
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "env": {
-    "NODE_ENV": "production",
-    "CORS_ORIGIN": "https://promptcrafter.vercel.app"
-  }
+  "version": 2,
+  "builds": [
+    {
+      "src": "src/index.ts",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "src/index.ts"
+    }
+  ]
 } 
