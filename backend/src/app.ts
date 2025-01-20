@@ -10,6 +10,8 @@ import { initializeData } from './utils/initData';
 import { errorHandler } from './middleware/errorHandler';
 import { apiLimiter } from './middleware/rateLimiter';
 import promptRoutes from './routes/prompt.routes';
+import technologiesRouter from './routes/technologies';
+import projectsRouter from './routes/projects';
 
 // Load env vars
 dotenv.config();
@@ -59,6 +61,8 @@ app.use(apiLimiter);
 // Routes
 app.use('/api', routes);
 app.use('/api/prompts', promptRoutes);
+app.use('/api/technologies', technologiesRouter);
+app.use('/api/projects', projectsRouter);
 
 // Health check endpoint
 app.get('/health', (req, res) => {
@@ -70,6 +74,11 @@ app.get('/health', (req, res) => {
 
 // Global hata yakalama
 app.use(errorHandler);
+
+// 404 handler
+app.use((req, res) => {
+  res.status(404).json({ error: 'Route not found' });
+});
 
 const PORT = process.env.PORT || 5678;
 
