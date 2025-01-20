@@ -29,6 +29,13 @@ export const getPromptByProjectId = createAsyncThunk(
   }
 );
 
+export const createPrompt = createAsyncThunk(
+  'prompt/create',
+  async (promptData: any) => {
+    return promptData;
+  }
+);
+
 const promptSlice = createSlice({
   name: 'prompt',
   initialState,
@@ -63,6 +70,18 @@ const promptSlice = createSlice({
         state.instructions = action.payload.instructions;
       })
       .addCase(getPromptByProjectId.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message || 'Bir hata oluştu';
+      })
+      .addCase(createPrompt.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(createPrompt.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(createPrompt.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message || 'Bir hata oluştu';
       });

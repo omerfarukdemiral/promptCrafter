@@ -17,7 +17,8 @@ export const projectService = {
   getById: (id: string) => api.get(`/projects/${id}`),
   update: (id: string, data: any) => api.put(`/projects/${id}`, data),
   delete: (id: string) => api.delete(`/projects/${id}`),
-  getPromptByProjectId: (projectId: string) => api.get(`/prompts/project/${projectId}`)
+  getPromptByProjectId: (projectId: string) => api.get(`/prompts/project/${projectId}`),
+  baseURL: API_URL
 };
 
 export const promptApi = {
