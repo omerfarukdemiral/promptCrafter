@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import { Terminal, Sparkles, Globe, Smartphone, ArrowRight, Trash2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import api from '@/services/api';
+import { toast } from 'react-hot-toast';
 
 interface Project {
   _id: string;
@@ -25,14 +27,12 @@ export default function Projects() {
 
   const fetchProjects = async () => {
     try {
-      const response = await fetch('/api/projects');
-      if (!response.ok) {
-        throw new Error('Projeler yüklenirken bir hata oluştu');
-      }
-      const result = await response.json();
-      setProjects(result.data);
+      setIsLoading(true);
+      const response = await api.get('/projects');
+      setProjects(response.data.data);
     } catch (error) {
-      console.error('Hata:', error);
+      console.error('Projeler yüklenirken hata:', error);
+      toast.error('Projeler yüklenirken bir hata oluştu');
     } finally {
       setIsLoading(false);
     }

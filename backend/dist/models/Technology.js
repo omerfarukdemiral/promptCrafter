@@ -5,23 +5,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const TechnologySchema = new mongoose_1.default.Schema({
-    category: {
-        type: String,
-        required: true,
-    },
     name: {
         type: String,
         required: true,
+        unique: true
     },
     icon: {
         type: String,
-        required: true,
+        required: true
+    },
+    category: {
+        type: String,
+        required: true
     },
     description: {
         type: String,
-        required: true,
+        required: true
     }
 }, {
-    timestamps: true,
+    timestamps: true
 });
 exports.default = mongoose_1.default.model('Technology', TechnologySchema);

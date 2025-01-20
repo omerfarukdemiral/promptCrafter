@@ -6,9 +6,24 @@ const api = axios.create({
   baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
-    'Accept': 'application/json'
   },
   withCredentials: true
+});
+
+// İstek interceptor'ı
+api.interceptors.request.use((config) => {
+  // İstek öncesi yapılacak işlemler
+  return config;
+}, (error) => {
+  return Promise.reject(error);
+});
+
+// Yanıt interceptor'ı
+api.interceptors.response.use((response) => {
+  return response;
+}, (error) => {
+  console.error('API Error:', error);
+  return Promise.reject(error);
 });
 
 export const projectService = {

@@ -4,6 +4,15 @@ import ProjectTechnology from '../models/ProjectTechnology';
 import Technology, { ITechnology } from '../models/Technology';
 import BaseController from './BaseController';
 import logger from '../utils/logger';
+import { Document, Types } from 'mongoose';
+
+interface IProjectTechnology extends Document {
+  projectId: Types.ObjectId;
+  technologyId: Types.ObjectId;
+  stepId: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
 class ProjectController extends BaseController {
   // Yeni proje oluştur
@@ -50,7 +59,7 @@ class ProjectController extends BaseController {
       logger.info('Proje başarıyla oluşturuldu:', { projectId: project._id });
 
       // Her bir teknoloji için kontrol ve kayıt işlemi
-      const projectTechnologies = [];
+      const projectTechnologies: IProjectTechnology[] = [];
       for (const tech of technologies) {
         // Teknoloji var mı kontrol et
         let technology = await Technology.findOne({
@@ -78,7 +87,7 @@ class ProjectController extends BaseController {
           stepId: tech.stepId
         });
 
-        projectTechnologies.push(projectTechnology);
+        projectTechnologies.push(projectTechnology as IProjectTechnology);
       }
 
       logger.info('Proje-Teknoloji ilişkileri başarıyla oluşturuldu:', {
